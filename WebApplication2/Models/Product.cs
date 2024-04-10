@@ -1,4 +1,9 @@
-﻿namespace WebApplication2.Models
+﻿using Microsoft.CodeAnalysis.Elfie.Serialization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+
+namespace WebApplication2.Models
 {
     public class Product
     {
@@ -15,6 +20,33 @@
         public string Color { get; set; }
         public string Size { get; set; }
         public string Weight { get; set; }
+        
+        //function to validate regex for email
+
+        public bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        //public static string FindImage(string image)
+        //{
+        //    //ask this in copilot rewrite this function to return true if image contains "jpg" or "png" using regex
+        //    return image;
+        //}
+
+
+        public static bool FindImage(string image)
+        {
+            Regex regex = new Regex(@"\.(jpg|png)$");
+            return regex.IsMatch(image);
+        }
 
         // function that calculates working business days between two dates
         public int CalculateWorkingDays(DateTime startDate, DateTime endDate)
