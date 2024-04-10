@@ -31,6 +31,12 @@
             return count;
         }
 
+        // q: what does LINQ stand for?
+
+        
+
+        //type /explain in copilot
+
 
     }
 }
