@@ -15,6 +15,24 @@
         public string Color { get; set; }
         public string Size { get; set; }
         public string Weight { get; set; }
-    
+
+        // function that calculates working business days between two dates
+        public int CalculateWorkingDays(DateTime startDate, DateTime endDate)
+        {
+            int count = 0;
+            while (startDate <= endDate)
+            {
+                if (startDate.DayOfWeek != DayOfWeek.Saturday && startDate.DayOfWeek != DayOfWeek.Sunday)
+                {
+                    count++;
+                }
+                startDate = startDate.AddDays(1);
+            }
+            return count;
+        }
+
+
     }
 }
+
+// function that calculates days between tow dates here it will show wrong suggestion
