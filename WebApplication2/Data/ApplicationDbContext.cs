@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebApplication2.Models;
 
 namespace WebApplication2.Data
 {
@@ -9,5 +10,6 @@ namespace WebApplication2.Data
             : base(options)
         {
         }
+        public DbSet<WebApplication2.Models.Product> Product { get; set; } = default!;
     }
 }
