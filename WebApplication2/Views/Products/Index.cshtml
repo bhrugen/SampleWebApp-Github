@@ -63,11 +63,24 @@
                         //q: what is bootstrap trash icon
                         //a: <i class="bi bi-trash-fill"></i>
                         "data": "id", "width": "50px", "render": function (data) {
-                            return '<a class="btn btn-danger" href="/Products/Delete/' + data + '"><i class="bi bi-trash-fill"></i></a>';
+                            return '<button class="btn btn-danger" onclick="deleteProduct(' + data + ')"><i class="bi bi-trash-fill"></i></button>';
                         }
                     }
                 ]
             });
+
         });
+        //  add a confirm box and on confirmation invoke a controller endpoint to delete product
+            function deleteProduct(id) {
+                if (confirm('Are you sure you want to delete this product?')) {
+                    $.ajax({
+                        url: '/Products/Delete/' + id,
+                        type: 'POST',
+                        success: function (result) {
+                            $('#productsTable').DataTable().ajax.reload();
+                        }
+                    });
+                }
+            }
     </script>
 }
