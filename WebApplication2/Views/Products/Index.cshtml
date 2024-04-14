@@ -73,25 +73,26 @@
 
         });
         //  add a confirm box and on confirmation invoke a controller endpoint to delete product
-        //add sweetlaert confirm box -- so this by selecting the function
-                    function deleteProduct(id) {
-                        swal({
-                            title: "Are you sure?",
-                            text: "Once deleted, you will not be able to recover this product!",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                        }).then((willDelete) => {
-                            if (willDelete) {
-                                $.ajax({
-                                    url: '/Products/Delete/' + id,
-                                    type: 'POST',
-                                    success: function (result) {
-                                        $('#productsTable').DataTable().ajax.reload();
-                                    }
-                                });
-                            }
-                        });
-                    }
+        //add sweetlaert confirm box -- so this by selecting the
+        function deleteProduct(id) {
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this product!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: 'Products/DeleteProduct/' + id,
+                        type: 'DELETE',
+                        success: function (result) {
+                            $('#productsTable').DataTable().ajax.reload();
+                        }
+                    });
+                }
+            });
+        }
+
     </script>
 }

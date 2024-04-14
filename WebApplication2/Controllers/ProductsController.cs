@@ -163,9 +163,9 @@ namespace WebApplication2.Controllers
         }
 
         //  create endpoint in products controller to delete product by id
-        [HttpPost]
-        // /fix
-        public async Task<IActionResult> Delete(int id)
+        //  endpoint not invoked Failed to load resource: the server responded with a status of 500 () Products/Delete/2:1
+        [HttpDelete("DeleteProduct/{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Product.FindAsync(id);
             if (product == null)
@@ -178,5 +178,6 @@ namespace WebApplication2.Controllers
 
             return NoContent();
         }
+        //select and wrtie this endpoint is never invoked
     }
 }
