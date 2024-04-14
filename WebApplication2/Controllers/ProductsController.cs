@@ -164,15 +164,16 @@ namespace WebApplication2.Controllers
 
         //  create endpoint in products controller to delete product by id
         [HttpPost]
+        // /fix
         public async Task<IActionResult> Delete(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Product.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            _context.Products.Remove(product);
+            _context.Product.Remove(product);
             await _context.SaveChangesAsync();
 
             return NoContent();
