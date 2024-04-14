@@ -10,7 +10,22 @@
     <a asp-action="Create">Create New</a>
 </p>
 <table id="productsTable" class="table">
-    <!-- Table content -->
+    <!-- Table header for Product Model -->
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Category)
+            </th>
+            <th>Edit</th>
+            <th>Details</th>
+            <th>Delete</th>
+        </tr>
    
 </table>
 
