@@ -9,45 +9,41 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+<table id="productsTable" class="table">
+    <!-- Table content -->
+   
 </table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#productsTable').DataTable({
+                "ajax": {
+                    "url": "/Products/GetProducts",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "name", "autoWidth": true },
+                    { "data": "price", "autoWidth": true },
+                    { "data": "category", "autoWidth": true },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a class="btn btn-default" href="/Products/Edit/' + data + '">Edit</a>';
+                        }
+                    },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a class="btn btn-default" href="/Products/Details/' + data + '">Details</a>';
+                        }
+                    },
+                    {
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a class="btn btn-default" href="/Products/Delete/' + data + '">Delete</a>';
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+}

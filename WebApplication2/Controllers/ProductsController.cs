@@ -153,5 +153,13 @@ namespace WebApplication2.Controllers
         {
             return _context.Product.Any(e => e.Id == id);
         }
+
+        //create an endpoint GetProducts to retrieve all products
+        [HttpGet]
+        public IActionResult GetProducts()
+        {
+            var products = _context.Product.ToListAsync().GetAwaiter().GetResult();
+            return Json(new { data =  products });
+        }
     }
 }
