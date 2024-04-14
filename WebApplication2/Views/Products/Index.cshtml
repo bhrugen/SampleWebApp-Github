@@ -7,7 +7,10 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <!--#file:'Products\Index.cshtml':10 add a link with bootstrap plus icon and btn info from bootstrap -->
+    <a asp-action="Create" class="btn btn-info">
+        <i class="bi bi-plus"></i> Create New
+    </a>
 </p>
 <table id="productsTable" class="table">
     <!-- Table header for Product Model -->
@@ -44,17 +47,23 @@
                     { "data": "category", "autoWidth": true },
                     {
                         "data": "id", "width": "50px", "render": function (data) {
-                            return '<a class="btn btn-default" href="/Products/Edit/' + data + '">Edit</a>';
+                            return '<a class="btn btn-success" href="/Products/Edit/' + data + '"><i class="bi bi-pencil-fill"></i></a>';
+                        }
+                        //inline ask what is bootstrap edit icon
+                    },
+                    {
+                        //q: what is bootstrap details icon syntax
+                        //a: <i class="bi bi-info-circle-fill"></i>
+
+                        "data": "id", "width": "50px", "render": function (data) {
+                            return '<a class="btn btn-primary" href="/Products/Details/' + data + '"><i class="bi bi-info-circle-fill"></i></a>';
                         }
                     },
                     {
+                        //q: what is bootstrap trash icon
+                        //a: <i class="bi bi-trash-fill"></i>
                         "data": "id", "width": "50px", "render": function (data) {
-                            return '<a class="btn btn-default" href="/Products/Details/' + data + '">Details</a>';
-                        }
-                    },
-                    {
-                        "data": "id", "width": "50px", "render": function (data) {
-                            return '<a class="btn btn-default" href="/Products/Delete/' + data + '">Delete</a>';
+                            return '<a class="btn btn-danger" href="/Products/Delete/' + data + '"><i class="bi bi-trash-fill"></i></a>';
                         }
                     }
                 ]
