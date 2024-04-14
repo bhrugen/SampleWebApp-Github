@@ -33,6 +33,8 @@
 </table>
 
 @section Scripts {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $('#productsTable').DataTable({
@@ -71,16 +73,25 @@
 
         });
         //  add a confirm box and on confirmation invoke a controller endpoint to delete product
-            function deleteProduct(id) {
-                if (confirm('Are you sure you want to delete this product?')) {
-                    $.ajax({
-                        url: '/Products/Delete/' + id,
-                        type: 'POST',
-                        success: function (result) {
-                            $('#productsTable').DataTable().ajax.reload();
-                        }
-                    });
-                }
-            }
+        //add sweetlaert confirm box -- so this by selecting the function
+                    function deleteProduct(id) {
+                        swal({
+                            title: "Are you sure?",
+                            text: "Once deleted, you will not be able to recover this product!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        }).then((willDelete) => {
+                            if (willDelete) {
+                                $.ajax({
+                                    url: '/Products/Delete/' + id,
+                                    type: 'POST',
+                                    success: function (result) {
+                                        $('#productsTable').DataTable().ajax.reload();
+                                    }
+                                });
+                            }
+                        });
+                    }
     </script>
 }
