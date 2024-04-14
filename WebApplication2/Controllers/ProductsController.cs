@@ -161,5 +161,21 @@ namespace WebApplication2.Controllers
             var products = _context.Product.ToListAsync().GetAwaiter().GetResult();
             return Json(new { data =  products });
         }
+
+        //  create endpoint in products controller to delete product by id
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
