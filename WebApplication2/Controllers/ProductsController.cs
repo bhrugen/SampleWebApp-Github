@@ -14,7 +14,6 @@ namespace WebApplication2.Controllers
     public class ProductsController : Controller
     {
         //use   in the controller rather than applicationdbcontext
-        private readonly ApplicationDbContext _context;
         private readonly ProductRepository _productRepository;
 
         public ProductsController(ProductRepository productRepository)
@@ -125,14 +124,7 @@ namespace WebApplication2.Controllers
 
             return View(product);
         }
-        // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            await _productRepository.DeleteProduct(id);
-            return RedirectToAction(nameof(Index));
-        }
+      
 
         private bool ProductExists(int id)
         {
@@ -148,7 +140,7 @@ namespace WebApplication2.Controllers
         }
 
         //  create endpoint in products controller to delete product by id
-        [HttpDelete("DeleteProduct/{id}")]
+        [HttpDelete("Products/DeleteProduct/{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             await _productRepository.DeleteProduct(id);
