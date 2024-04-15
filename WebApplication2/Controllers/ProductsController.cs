@@ -76,7 +76,12 @@ namespace WebApplication2.Controllers
         }
 
 
-        // POST: Products/Edit/5
+        /// <summary>
+        /// Edits a product with the specified ID.
+        /// </summary>
+        /// <param name="id">The ID of the product to edit.</param>
+        /// <param name="product">The updated product object.</param>
+        /// <returns>The action result.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Category,Color")] Product product)
@@ -108,7 +113,11 @@ namespace WebApplication2.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
+        /// <summary>
+        /// Displays the delete confirmation page for a product with the specified ID.
+        /// </summary>
+        /// <param name="id">The ID of the product to delete.</param>
+        /// <returns>The action result.</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
