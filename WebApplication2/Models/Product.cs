@@ -42,6 +42,7 @@ namespace WebApplication2.Models
         }
 
         // function that calculates working business days between two dates
+        //select this and use /explain in copilot
         public int CalculateWorkingDays(DateTime startDate, DateTime endDate)
         {
             int count = 0;
@@ -55,6 +56,8 @@ namespace WebApplication2.Models
             }
             return count;
         }
+
+        //alt / for inline chat
 
         // q: what does LINQ stand for?
 

@@ -55,3 +55,27 @@ function deleteProduct(id) {
         }
     });
 }
+
+//create a function to validate image extension based on string parameter
+//use alt. or alt,
+//q: how many backslashes are needed to escape a period in a regex
+//a: two
+
+//q: what is the syntax for a regex in javascript
+//a: /regex/
+
+//q: what is the regex for validating an email
+//a: /(\w+@\w+\.\w+)/
+
+//q: what is the regex for validating an image extension
+//a: /(\.jpg|\.jpeg|\.png|\.gif)$/i
+
+
+function validateImageExtension(image) {
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if (!allowedExtensions.exec(image)) {
+        swal("Invalid Image!", "Please upload file having extensions .jpeg/.jpg/.png/.gif only.", "error");
+        return false;
+    }
+    return true;
+}
