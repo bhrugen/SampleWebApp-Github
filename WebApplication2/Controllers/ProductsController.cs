@@ -155,5 +155,24 @@ namespace WebApplication2.Controllers
             await _productRepository.DeleteProduct(id);
             return NoContent();
         }
+
+        //create an endpoint GetProductsByCategoryOrColor to retrieve products by category or color. The endpoint should accept two parameters: category and color. Specify the route for this endpoint as Products/GetProductsByCategoryOrColor
+        [HttpGet("Products/GetProductsByCategoryOrColor")]
+        public IActionResult GetProductsByCategoryOrColor(string category, string color)
+        {
+            var products = _productRepository.GetProducts().Result;
+            if (category != null)
+            {
+                products = products.Where(p => p.Category == category);
+            }
+            if (color != null)
+            {
+                products = products.Where(p => p.Color == color);
+            }
+            return Json(new { data = products });
+        }
+    
+        
+
     }
 }
