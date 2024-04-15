@@ -43,7 +43,11 @@ namespace WebApplication2.Controllers
 
             return View(product);
         }
-
+        // GET: Products/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
         // POST: Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -56,6 +60,22 @@ namespace WebApplication2.Controllers
             }
             return View(product);
         }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _productRepository.GetProduct(id.GetValueOrDefault());
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
 
         // POST: Products/Edit/5
         [HttpPost]
@@ -89,6 +109,22 @@ namespace WebApplication2.Controllers
             return View(product);
         }
 
+        // GET: Products/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _productRepository.GetProduct(id.GetValueOrDefault());
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
