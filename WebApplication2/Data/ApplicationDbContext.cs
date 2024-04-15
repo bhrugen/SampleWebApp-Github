@@ -11,5 +11,11 @@ namespace WebApplication2.Data
         {
         }
         public DbSet<WebApplication2.Models.Product> Product { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
