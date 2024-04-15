@@ -161,6 +161,7 @@ namespace WebApplication2.Controllers
         public IActionResult GetProductsByCategoryOrColor(string category, string color)
         {
             var products = _productRepository.GetProducts().Result;
+            var tempNumber=0;
             if (category != null)
             {
                 products = products.Where(p => p.Category == category);
@@ -168,6 +169,10 @@ namespace WebApplication2.Controllers
             if (color != null)
             {
                 products = products.Where(p => p.Color == color);
+            }
+            if(category!=null && products != null)
+            {
+                tempNumber = products.Count();  
             }
             return Json(new { data = products });
         }
